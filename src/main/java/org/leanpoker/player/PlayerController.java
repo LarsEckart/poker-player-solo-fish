@@ -2,6 +2,7 @@ package org.leanpoker.player;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import io.micronaut.core.annotation.Nullable;
@@ -36,8 +37,8 @@ public class PlayerController {
         }
         if (action.equals("showdown")) {
 //            GameState gameState = mapper.readValue(game_state, GameState.class);
-
-            Player.showdown(null);
+            JsonNode jsonNode = mapper.readTree(game_state);
+            Player.showdown(jsonNode);
         }
         if (action.equals("version")) {
             return Player.VERSION;
