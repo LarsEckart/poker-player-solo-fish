@@ -37,6 +37,7 @@ public class PlayerController {
   public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state,
       HttpRequest<?> request)
       throws JsonProcessingException {
+    SimpleLogger.variable("lars", 1.0);
     SimpleLogger.variable("request", request.getParameters().asMap());
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
@@ -50,7 +51,7 @@ public class PlayerController {
 //        if (action.equals("version")) {
 //            return Player.VERSION;
 //        }
-    return "1";
+    return "500";
   }
 
 }
