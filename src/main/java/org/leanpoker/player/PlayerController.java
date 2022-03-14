@@ -33,10 +33,10 @@ public class PlayerController {
   }
 
   @Post(produces = MediaType.TEXT_PLAIN)
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+  @Consumes(MediaType.ALL)
   public String doPost(HttpRequest<?> request)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.2);
+    SimpleLogger.variable("lars", 1.3);
     SimpleLogger.variable("request", request.getParameters().asMap());
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
