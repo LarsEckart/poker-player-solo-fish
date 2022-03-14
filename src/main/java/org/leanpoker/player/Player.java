@@ -2,7 +2,6 @@ package org.leanpoker.player;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import org.leanpoker.player.model.GameState;
 import org.slf4j.Logger;
 
@@ -19,7 +18,7 @@ public class Player {
         return 0;
     }
 
-    public static void showdown(JsonNode gameState) {
+    public static void showdown(String gameState) {
         log.info("gamestate json: {}", gameState);
     }
 }

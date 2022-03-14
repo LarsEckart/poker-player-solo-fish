@@ -5,18 +5,15 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spun.util.JsonUtils;
 import com.spun.util.logger.SimpleLogger;
-import io.micronaut.core.annotation.Nullable;
-import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
-import io.micronaut.http.annotation.QueryValue;
 import java.util.Map;
+import org.leanpoker.player.model.GameState;
 import org.slf4j.Logger;
 
 @Controller("/")
@@ -36,24 +33,24 @@ public class PlayerController {
 
   @Post(produces = MediaType.TEXT_PLAIN)
   @Consumes(MediaType.ALL)
-  public String doPost(HttpRequest<?> request, @Body Map<String, String> body)
+  public String doPost(@Body Map<String, String> body)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.5);
-    SimpleLogger.variable("request", request.getParameters().asMap());
-    SimpleLogger.variable("body", body.get("action"));
-//        log.info("action {}", action);
-//        if (action.equals("bet_request")) {
-//            log.info("action game_state {}", game_state);
-//            GameState gameState = mapper.readValue(game_state, GameState.class);
-//            return String.valueOf(Player.betRequest(gameState));
-//        }
-//        if (action.equals("showdown")) {
-//            Player.showdown(null);
-//        }
-//        if (action.equals("version")) {
-//            return Player.VERSION;
-//        }
-    return "500";
+    SimpleLogger.variable("lars", 1.6);
+    SimpleLogger.variable("body", body);
+    var game_state = body.get("game_state");
+    var action = body.get("action");
+
+    if (action.equals("bet_request")) {
+      GameState gameState = mapper.readValue(game_state, GameState.class);
+      return String.valueOf(Player.betRequest(gameState));
+    }
+    if (action.equals("showdown")) {
+      Player.showdown(game_state);
+    }
+    if (action.equals("version")) {
+      return Player.VERSION;
+    }
+    return "1";
   }
 
 }
