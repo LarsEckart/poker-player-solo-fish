@@ -17,7 +17,7 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.QueryValue;
 import org.slf4j.Logger;
 
-@Controller()
+@Controller("/")
 public class PlayerController {
 
   private static final Logger log = getLogger(PlayerController.class);
@@ -33,10 +33,10 @@ public class PlayerController {
   }
 
   @Post(produces = MediaType.TEXT_PLAIN)
-  @Consumes(MediaType.ALL)
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   public String doPost(HttpRequest<?> request)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.1);
+    SimpleLogger.variable("lars", 1.2);
     SimpleLogger.variable("request", request.getParameters().asMap());
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
