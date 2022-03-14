@@ -8,12 +8,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import io.micronaut.core.annotation.Nullable;
+import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.QueryValue;
+import java.util.List;
+import java.util.Map.Entry;
 import org.leanpoker.player.model.GameState;
 import org.slf4j.Logger;
 
@@ -34,21 +37,15 @@ public class PlayerController {
 
     @Post(produces = MediaType.TEXT_PLAIN)
     @Consumes(MediaType.ALL)
-    public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state)
+//    public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state)
+    public String doPost(HttpRequest<?> request)
+
         throws JsonProcessingException {
-        log.info("action {}", action);
-        if (action.equals("bet_request")) {
-            log.info("action game_state {}", game_state);
-            GameState gameState = mapper.readValue(game_state, GameState.class);
-            return String.valueOf(Player.betRequest(gameState));
+        for (Entry<String, List<String>> header : request.getHeaders()) {
+            log.info("header '{}' : {}", header.getKey(), header.getValue());
         }
-        if (action.equals("showdown")) {
-            Player.showdown(null);
-        }
-        if (action.equals("version")) {
-            return Player.VERSION;
-        }
-        return "";
+        log.info("uri {} ", request.getUri());
+        return "0";
     }
 
 }
