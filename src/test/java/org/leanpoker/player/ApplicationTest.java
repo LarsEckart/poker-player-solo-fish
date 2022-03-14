@@ -90,7 +90,7 @@ class ApplicationTest {
                                           "bet": 80,
                                           "hole_cards": [                         
                                               {
-                                                  "rank": "6",                    
+                                                  "rank": "K",                    
                                                   "suit": "hearts"                
                                               },
                                               {
@@ -128,6 +128,6 @@ class ApplicationTest {
 
         HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertThat(httpResponse.body()).isEqualTo("420");
+        assertThat(httpResponse.body()).isEqualTo("500");
     }
 }

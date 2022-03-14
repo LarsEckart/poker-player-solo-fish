@@ -36,9 +36,7 @@ public class PlayerController {
             return String.valueOf(Player.betRequest(gameState));
         }
         if (action.equals("showdown")) {
-//            GameState gameState = mapper.readValue(game_state, GameState.class);
-            JsonNode jsonNode = mapper.readTree(game_state);
-            Player.showdown(jsonNode);
+            Player.showdown(null);
         }
         if (action.equals("version")) {
             return Player.VERSION;
