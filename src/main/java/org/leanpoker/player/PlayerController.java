@@ -1,5 +1,7 @@
 package org.leanpoker.player;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,9 +15,12 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.QueryValue;
 import org.leanpoker.player.model.GameState;
+import org.slf4j.Logger;
 
 @Controller()
 public class PlayerController {
+
+    private static final Logger log = getLogger(PlayerController.class);
 
     ObjectMapper mapper = new ObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -31,7 +36,9 @@ public class PlayerController {
     @Consumes(MediaType.ALL)
     public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state)
         throws JsonProcessingException {
+        log.info("action {}", action);
         if (action.equals("bet_request")) {
+            log.info("action game_state {}", game_state);
             GameState gameState = mapper.readValue(game_state, GameState.class);
             return String.valueOf(Player.betRequest(gameState));
         }
