@@ -35,7 +35,8 @@ public class PlayerController {
   @Consumes(MediaType.ALL)
   public String doPost(@Body Map<String, String> body)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.6);
+    var version = "1.6 - showing version";
+    SimpleLogger.variable("version", version);
     SimpleLogger.variable("body", body);
     var game_state = body.get("game_state");
     var action = body.get("action");
@@ -48,7 +49,7 @@ public class PlayerController {
       Player.showdown(game_state);
     }
     if (action.equals("version")) {
-      return Player.VERSION;
+      return version;
     }
     return "1";
   }
