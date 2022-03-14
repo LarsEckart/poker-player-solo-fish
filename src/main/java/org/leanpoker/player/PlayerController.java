@@ -44,7 +44,7 @@ public class PlayerController {
         for (Entry<String, List<String>> header : request.getHeaders()) {
             log.info("header '{}' : {}", header.getKey(), header.getValue());
         }
-        log.info("uri {} ", request.getUri());
+        log.info("path {} ", request.getPath());
         return "0";
     }
 
