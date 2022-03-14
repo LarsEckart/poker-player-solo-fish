@@ -1,15 +1,18 @@
 package org.leanpoker.player;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import org.leanpoker.player.model.GameState;
 
 public class Player {
 
     static final String VERSION = "Default Java folding player";
 
-    public static int betRequest(JsonNode request) {
-        return 100;
+    public static int betRequest(GameState gameState) {
+        if (gameState.me().score() > 8) {
+            return 500;
+        }
+        return 0;
     }
 
-    public static void showdown(JsonNode game) {
+    public static void showdown(GameState gameState) {
     }
 }
