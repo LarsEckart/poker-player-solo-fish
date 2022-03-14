@@ -44,6 +44,8 @@ public class PlayerController {
             log.info("header '{}' : {}", header.getKey(), header.getValue());
         }
 
+        log.info("body {}", request.getBody());
+
         for (Entry<String, List<String>> parameter : request.getParameters()) {
             log.info("parameter '{}' : {}", parameter.getKey(), parameter.getValue());
         }
