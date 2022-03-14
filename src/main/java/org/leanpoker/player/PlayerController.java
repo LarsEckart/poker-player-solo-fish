@@ -10,6 +10,7 @@ import com.spun.util.logger.SimpleLogger;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
+import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -34,10 +35,11 @@ public class PlayerController {
 
   @Post(produces = MediaType.TEXT_PLAIN)
   @Consumes(MediaType.ALL)
-  public String doPost(HttpRequest<?> request)
+  public String doPost(HttpRequest<?> request, @Body String body)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.3);
+    SimpleLogger.variable("lars", 1.4);
     SimpleLogger.variable("request", request.getParameters().asMap());
+    SimpleLogger.variable("body", body);
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
 //            log.info("action game_state {}", game_state);
