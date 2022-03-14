@@ -16,6 +16,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.QueryValue;
+import java.util.Map;
 import org.slf4j.Logger;
 
 @Controller("/")
@@ -35,11 +36,11 @@ public class PlayerController {
 
   @Post(produces = MediaType.TEXT_PLAIN)
   @Consumes(MediaType.ALL)
-  public String doPost(HttpRequest<?> request, @Body String body)
+  public String doPost(HttpRequest<?> request, @Body Map<String, String> body)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.4);
+    SimpleLogger.variable("lars", 1.5);
     SimpleLogger.variable("request", request.getParameters().asMap());
-    SimpleLogger.variable("body", body);
+    SimpleLogger.variable("body", body.get("action"));
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
 //            log.info("action game_state {}", game_state);
