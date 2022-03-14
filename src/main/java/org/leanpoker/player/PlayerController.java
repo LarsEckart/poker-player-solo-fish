@@ -40,16 +40,7 @@ public class PlayerController {
 //    public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state)
     public String doPost(HttpRequest<?> request)
         throws JsonProcessingException {
-        for (Entry<String, List<String>> header : request.getHeaders()) {
-            log.info("header '{}' : {}", header.getKey(), header.getValue());
-        }
 
-        log.info("body {}", request.getBody());
-
-        for (Entry<String, List<String>> parameter : request.getParameters()) {
-            log.info("parameter '{}' : {}", parameter.getKey(), parameter.getValue());
-        }
-        log.info("path {} ", request.getPath());
         return "0";
     }
 

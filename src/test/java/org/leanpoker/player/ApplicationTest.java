@@ -58,7 +58,7 @@ class ApplicationTest {
         HttpRequest request =
             HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(""))
-                .header("Content-Type", "text/plain")
+                .header("Content-Type", "application/x-www-form-urlencoded")
                 .uri(URI.create(server.getURI().toString() + "/?action=bet_request&game_state=" + URLEncoder.encode("""
                                 {
                                   "tournament_id":"550d1d68cd7bd10003000003",     
