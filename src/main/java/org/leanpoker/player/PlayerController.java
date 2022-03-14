@@ -35,7 +35,7 @@ public class PlayerController {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   public String doPost(@Body Map<String, String> body)
       throws JsonProcessingException {
-    var version = "1.7 - consume app form urlencoded";
+    var version = "1.8 - go all-in";
     SimpleLogger.variable("version", version);
     SimpleLogger.variable("body", body);
     var game_state = body.get("game_state");

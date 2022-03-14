@@ -13,7 +13,7 @@ public class Player {
 
     public static int betRequest(GameState gameState) {
         if (gameState.me().score() > 8) {
-            return 500;
+            return 500000;
         }
         return 0;
     }
