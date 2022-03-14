@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.MediaType;
+import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
@@ -20,11 +21,13 @@ public class PlayerController {
 
     ObjectMapper mapper = new ObjectMapper();
 
+    @Consumes(MediaType.ALL)
     @Get(produces = MediaType.TEXT_PLAIN)
     public String doGet() {
         return "Java player is running";
     }
 
+    @Consumes(MediaType.ALL)
     @Post(produces = MediaType.TEXT_PLAIN)
     public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state) throws JsonProcessingException {
         if (action.equals("bet_request")) {
