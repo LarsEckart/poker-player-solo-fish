@@ -37,7 +37,7 @@ public class PlayerController {
   public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state,
       HttpRequest<?> request)
       throws JsonProcessingException {
-    SimpleLogger.variable("request", JsonUtils.asJson(request));
+    SimpleLogger.variable("request", request.getParameters().asMap());
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
 //            log.info("action game_state {}", game_state);
