@@ -34,10 +34,9 @@ public class PlayerController {
 
   @Post(produces = MediaType.TEXT_PLAIN)
   @Consumes(MediaType.ALL)
-  public String doPost(@QueryValue String action, @Nullable @QueryValue String game_state,
-      HttpRequest<?> request)
+  public String doPost(HttpRequest<?> request)
       throws JsonProcessingException {
-    SimpleLogger.variable("lars", 1.0);
+    SimpleLogger.variable("lars", 1.1);
     SimpleLogger.variable("request", request.getParameters().asMap());
 //        log.info("action {}", action);
 //        if (action.equals("bet_request")) {
