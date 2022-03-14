@@ -35,9 +35,9 @@ public class PlayerController {
             return String.valueOf(Player.betRequest(gameState));
         }
         if (action.equals("showdown")) {
-            GameState gameState = mapper.readValue(game_state, GameState.class);
+//            GameState gameState = mapper.readValue(game_state, GameState.class);
 
-            Player.showdown(gameState);
+            Player.showdown(null);
         }
         if (action.equals("version")) {
             return Player.VERSION;
